@@ -11,22 +11,9 @@ export default {
   components: {
     Bookmark
   },
-  data() {
-    return {
-      bookmarks: [
-        {
-          id: 1,
-          title: 'Google',
-          url: 'https://www.google.com/',
-          tags: ['search', 'seo']
-        },
-        {
-          id: 2,
-          title: 'ESPN',
-          url: 'http://www.espn.com/',
-          tags: ['sports', 'NFL']
-        }
-      ]
+  computed: {
+    bookmarks() {
+      return this.$store.state.bookmarks.all;
     }
   }
 }
