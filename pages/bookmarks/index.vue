@@ -1,14 +1,16 @@
 <template lang="html">
   <div class="page">
-    <div v-for="b in bookmarks" :key="b.id" class="bookmark">
-    {{ b.title }}
-    {{ b.url }}
-    </div>
+    <Bookmark v-for="b in bookmarks" :key="b.id" :title="b.title" :url="b.url" />
   </div>
 </template>
 
 <script>
+import Bookmark from '../../components/Bookmark';
+
 export default {
+  components: {
+    Bookmark
+  },
   data() {
     return {
       bookmarks: [
