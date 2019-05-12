@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="Bookmark">
-    <a :href="url" :title="url">{{ title }}</a>
+    <a :href="url" :title="url">
+      <img :src="url + '/favicon.ico'" class="favicon" target="_blank">
+      {{ title }}
+    </a>
   </div>
 </template>
 
@@ -13,15 +16,21 @@ export default {
 
 <style lang="scss" scoped>
   .Bookmark {
-    display: block;
-    padding: 10px;
-    margin: 0 0 10px;
-    background: #eee;
-    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
 
     a {
+      display: flex;
+      align-items: center;
+      padding: 6px;
       color: #333;
       text-decoration: none;
+      line-height: 1;
+    }
+    .favicon {
+      height: 1em;
+      width: 1em;
+      margin-right: 4px;
     }
   }
 </style>
