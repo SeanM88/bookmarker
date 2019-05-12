@@ -1,7 +1,6 @@
 <template lang="html">
-  <div class="bookmark">
-    {{ title }}
-    {{ url }}
+  <div class="Bookmark">
+    <a :href="url" :title="url">{{ title }}</a>
   </div>
 </template>
 
@@ -12,5 +11,17 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+  .Bookmark {
+    display: block;
+    padding: 10px;
+    margin: 0 0 10px;
+    background: #eee;
+    border: 1px solid #ddd;
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+  }
 </style>

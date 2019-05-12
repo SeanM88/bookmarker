@@ -1,14 +1,17 @@
 <template lang="html">
   <div class="page">
+    <AddBookmark />
     <Bookmark v-for="b in bookmarks" :key="b.id" :title="b.title" :url="b.url" />
   </div>
 </template>
 
 <script>
+import AddBookmark from '../../components/AddBookmark';
 import Bookmark from '../../components/Bookmark';
 
 export default {
   components: {
+    AddBookmark,
     Bookmark
   },
   computed: {
@@ -22,11 +25,5 @@ export default {
 <style lang="css" scoped>
   .page {
     padding: 2rem;
-  }
-  .bookmark {
-    display: block;
-    padding: 1rem 2rem;
-    border: 1px solid #eee;
-    margin: 1rem 0;
   }
 </style>
