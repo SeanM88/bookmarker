@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="sidebar">
+  <div class="AppSidebar">
     <p>Sidebar</p>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .sidebar {
+  .AppSidebar {
     display: block;
     background: #eee;
     width: 200px;
