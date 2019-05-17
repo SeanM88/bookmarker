@@ -1,13 +1,13 @@
 <template lang="html">
   <div class="Bookmark">
-    <a :href="url" :title="url" class="Bookmark-link">
-      <img :src="url + '/favicon.ico'" class="Bookmark-favicon" target="_blank">
-      {{ title }}
+    <a :href="bookmark.url" :title="bookmark.url" class="Bookmark-link">
+      <img :src="bookmark.url + '/favicon.ico'" class="Bookmark-favicon" target="_blank">
+      {{ bookmark.title }}
     </a>
     <div class="Bookmark-editTools">
-      <i @click="starBookmark(id)" class="fas fa-star" title="Star"></i>
-      <i @click="editBookmark(id)" class="fas fa-edit" title="Edit"></i>
-      <i @click="deleteBookmark(id)" class="fas fa-trash" title="Delete"></i>
+      <i @click="starBookmark(bookmark.id)" class="fas fa-star" :class="{ 'u-isFavorite': bookmark.isFavorite }" title="Star"></i>
+      <i @click="editBookmark(bookmark.id)" class="fas fa-edit" title="Edit"></i>
+      <i @click="deleteBookmark(bookmark.id)" class="fas fa-trash" title="Delete"></i>
     </div>
   </div>
 </template>
@@ -17,10 +17,16 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'Bookmark',
-  props: ['id', 'title', 'url'],
+  // props: ['id', 'title', 'url', 'isFavorite'],
+  props: {
+    bookmark: {
+      type: Object
+    }
+  },
   methods: {
     ...mapActions({
-      deleteBookmark: 'bookmarks/deleteBookmark'
+      deleteBookmark: 'bookmarks/deleteBookmark',
+      starBookmark: 'bookmarks/starBookmark'
     })
   }
 }
@@ -60,7 +66,7 @@ export default {
 
       }
 
-      i.starred {
+      i.u-isFavorite {
         color: #ffef51;
       }
 

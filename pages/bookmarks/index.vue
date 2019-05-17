@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="Page Page--bookmarks">
     <AddBookmark />
-    <Bookmark v-for="b in bookmarks" :key="b.id" :title="b.title" :url="b.url" :id="b.id" />
+    <Bookmark v-for="bookmark in bookmarks"
+      :key="bookmark.id"
+      :bookmark="bookmark"
+    />
   </div>
 </template>
 
