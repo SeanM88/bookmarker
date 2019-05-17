@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="Page Page--bookmarks">
     <AddBookmark />
-    <Bookmark v-for="b in bookmarks" :key="b.id" :title="b.title" :url="b.url" />
+    <Bookmark v-for="b in bookmarks" :key="b.id" :title="b.title" :url="b.url" :id="b.id" />
   </div>
 </template>
 
@@ -18,9 +18,11 @@ export default {
     Bookmark
   },
   // mapState docs: https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
-  computed: mapState({
-    bookmarks: state => state.bookmarks.all
-  })
+  computed: {
+    ...mapState({
+      bookmarks: state => state.bookmarks.all
+    })
+  }
 }
 </script>
 

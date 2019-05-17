@@ -13,13 +13,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Bookmark',
-  props: ['title', 'url'],
+  props: ['id', 'title', 'url'],
   methods: {
-    starBookmark() {},
-    editBookmark() {},
-    deleteBookmark() {},
+    ...mapActions({
+      deleteBookmark: 'bookmarks/deleteBookmark'
+    })
   }
 }
 </script>
