@@ -1,16 +1,29 @@
 <template lang="html">
   <div class="Bookmark">
-    <a :href="bookmark.url" :title="bookmark.url" class="Bookmark-link">
-      <img :src="bookmark.url + '/favicon.ico'" class="Bookmark-favicon" target="_blank">
+
+    <a class="Bookmark-link" :href="bookmark.url" :title="bookmark.url">
+
+      <img class="Bookmark-favicon" :src="bookmark.url + '/favicon.ico'" target="_blank">
+
       {{ bookmark.title }}
+
     </a>
+
+    <ul class="Bookmark-tags TagList">
+      <li class="TagList-item" v-for="tag in bookmark.tags">{{ tag }}</li>
+    </ul>
+
     <div class="Bookmark-editTools">
+
       <i @click="starBookmark(bookmark.id)" class="fas fa-star" :class="{ 'u-isFavorite': bookmark.isFavorite }" title="Star"></i>
       <i @click="editBookmark(bookmark.id)" class="fas fa-edit" title="Edit"></i>
       <i @click="deleteBookmark(bookmark.id)" class="fas fa-trash" title="Delete"></i>
+
     </div>
+
   </div>
 </template>
+
 
 <script>
 import { mapActions } from 'vuex';
@@ -31,6 +44,7 @@ export default {
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
   .Bookmark {
@@ -72,5 +86,21 @@ export default {
 
     }
 
+  }
+
+  .TagList {
+    display: flex;
+    font-size: 0.75rem;
+    list-style: none;
+    margin-left: auto;
+
+    &-item {
+      display: inline-block;
+      line-height: 1;
+      background-color: #eee;
+      padding: 0.25em 0.5em;
+      margin-right: 4px;
+      border-radius: 2px;
+    }
   }
 </style>
