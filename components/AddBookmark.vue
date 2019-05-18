@@ -1,27 +1,37 @@
 <template lang="html">
   <div class="AddBookmark">
+
     <form @submit="onSubmit">
-      <input type="text" v-model="title" placeholder="Bookmark Title...">
-      <input type="text" v-model="url" placeholder="URL">
+      <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
+      <input type="text" v-model="bookmark.url" placeholder="URL">
       <input type="submit" value="Add">
     </form>
+
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'AddBookmark',
   data() {
     return {
-      title: '',
-      url: ''
+      bookmark: {
+        title: '',
+        url: '',
+        isFavorite: false,
+        tags: []
+      }
     }
   },
   methods: {
-    async onSubmit(e) {
+    ...mapActions({
+      addBookmark: 'bookmarks/addBookmark'
+    }),
+    onSubmit(e) {
       e.preventDefault();
+      this.addBookmark(this.bookmark);
     }
   }
 }

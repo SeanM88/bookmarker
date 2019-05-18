@@ -101,6 +101,7 @@ export default {
       padding: 0.25em 0.5em;
       margin-right: 4px;
       border-radius: 2px;
+      cursor: pointer;
     }
   }
 </style>

@@ -39,35 +39,33 @@ export const getters = {
   onlyStarred: (state) => state.all.filter(bookmark => bookmark.isFavorite === true)
 }
 
-// ACTIONS
+// ACTIONS - CRUD backend data
 export const actions = {
   // async fetchBookmarks() {},
   async addBookmark( { commit }, bookmark ) {
-    const response = await axios.post(
-      'REPLACE-FIRESTORE-API-URL-HERE',
-      { bookmark }
-    );
-    commit('mu_AddBookmark', response.data);
+    // const response = await axios.post(
+    //   'REPLACE-FIRESTORE-API-URL-HERE',
+    //   { bookmark }
+    // );
+    // commit('MU_AddBookmark', response.data);
+    commit('MU_AddBookmark', bookmark);
   },
   async deleteBookmark( { commit }, id ) {
     // await axios.delete(
     //   `REPLACE-FIRESTORE-API-URL-HERE/${id}`
     // );
-    commit('mu_DeleteBookmark', id);
+    commit('MU_DeleteBookmark', id);
   },
   async starBookmark( { commit }, id ) {
-    commit('mu_ActiveBookmark', id);
-    commit('mu_StarBookmark', id);
+    commit('MU_ActiveBookmark', id);
+    commit('MU_StarBookmark', id);
   }
 };
 
-// MUTATIONS
+// MUTATIONS - Update state
 export const mutations = {
-  mu_ActiveBookmark: (state, id) => state.active = state.all.find(bookmark => bookmark.id === id),
-  mu_DeleteBookmark: (state, id) => state.all = state.all.filter(bookmark => id !== bookmark.id),
-  mu_StarBookmark(state, id) {
-    state.active.isFavorite = !state.active.isFavorite;
-    // let index = state.all.indexOf(state.active);
-    // state.all[index] =
-  }
+  MU_ActiveBookmark: (state, id) => state.active = state.all.find(bookmark => bookmark.id === id),
+  MU_AddBookmark: (state, bookmark) => state.all.unshift(bookmark),
+  MU_DeleteBookmark: (state, id) => state.all = state.all.filter(bookmark => id !== bookmark.id),
+  MU_StarBookmark: (state, id) => state.active.isFavorite = !state.active.isFavorite
 };
