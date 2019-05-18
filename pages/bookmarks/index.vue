@@ -10,7 +10,7 @@
 
 <script>
 // vuex helpers
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 // Components
 import AddBookmark from '../../components/AddBookmark';
 import Bookmark from '../../components/Bookmark';
@@ -25,6 +25,14 @@ export default {
     ...mapState({
       bookmarks: state => state.bookmarks.all
     })
+  },
+  methods: {
+    ...mapActions({
+      fetchBookmarks: 'bookmarks/fetchBookmarks'
+    })
+  },
+  created() {
+    this.fetchBookmarks();
   }
 }
 </script>

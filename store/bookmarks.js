@@ -1,37 +1,11 @@
 import axios from 'axios';
+import { fireDb } from '~/plugins/firebase.js';
+
+const bookmarksRef = fireDb.collection('bookmarks');
 
 // STATE
 export const state = () => ({
-  all: [
-    {
-      id: 'zX9bhs',
-      title: 'Google',
-      url: 'https://www.google.com/',
-      isFavorite: false,
-      tags: ['search', 'seo']
-    },
-    {
-      id: 'hi29sk',
-      title: 'ESPN',
-      url: 'http://www.espn.com/',
-      isFavorite: false,
-      tags: ['sports', 'NFL']
-    },
-    {
-      id: 'o7ps8h',
-      title: 'Barstool Sports',
-      url: 'https://www.barstoolsports.com/',
-      isFavorite: false,
-      tags: ['sports', 'blog', 'comedy']
-    },
-    {
-      id: 'l8ks6e',
-      title: 'On The Water',
-      url: 'https://www.onthewater.com/',
-      isFavorite: true,
-      tags: ['fishing', 'boating']
-    }
-  ],
+  all: [],
   active: {}
 });
 
@@ -41,14 +15,21 @@ export const getters = {
 
 // ACTIONS - CRUD backend data
 export const actions = {
-  // async fetchBookmarks() {},
+  async fetchBookmarks( { commit } ) {
+    const snapshot = await bookmarksRef.get();
+    let items = [];
+    for ( let item of snapshot.docs ) {
+      // console.log(item.id, item.data());
+      let bmk = item.data();
+      bmk.id = item.id;
+      items.push(bmk);
+    }
+    commit('MU_SetBookmarks', items);
+  },
   async addBookmark( { commit }, bookmark ) {
-    // const response = await axios.post(
-    //   'REPLACE-FIRESTORE-API-URL-HERE',
-    //   { bookmark }
-    // );
-    // commit('MU_AddBookmark', response.data);
-    commit('MU_AddBookmark', bookmark);
+    // const response = await fireDb.collection('bookmarks').add(bookmark);
+    // console.log(response);
+    // commit('MU_AddBookmark', bookmark);
   },
   async deleteBookmark( { commit }, id ) {
     // await axios.delete(
@@ -64,6 +45,7 @@ export const actions = {
 
 // MUTATIONS - Update state
 export const mutations = {
+  MU_SetBookmarks: (state, bookmarks) => (state.all = bookmarks),
   MU_ActiveBookmark: (state, id) => state.active = state.all.find(bookmark => bookmark.id === id),
   MU_AddBookmark: (state, bookmark) => state.all.unshift(bookmark),
   MU_DeleteBookmark: (state, id) => state.all = state.all.filter(bookmark => id !== bookmark.id),
