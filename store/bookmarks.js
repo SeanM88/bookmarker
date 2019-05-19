@@ -15,28 +15,29 @@ export const getters = {
 
 // ACTIONS - CRUD backend data
 export const actions = {
+
   async fetchBookmarks( { commit } ) {
     const snapshot = await bookmarksRef.get();
-    let items = [];
+    const items = [];
     for ( let item of snapshot.docs ) {
-      // console.log(item.id, item.data());
       let bmk = item.data();
       bmk.id = item.id;
       items.push(bmk);
     }
     commit('MU_SetBookmarks', items);
   },
+
   async addBookmark( { commit }, bookmark ) {
     // const response = await fireDb.collection('bookmarks').add(bookmark);
     // console.log(response);
     // commit('MU_AddBookmark', bookmark);
   },
+
   async deleteBookmark( { commit }, id ) {
-    // await axios.delete(
-    //   `REPLACE-FIRESTORE-API-URL-HERE/${id}`
-    // );
+    await bookmarksRef.doc(id).delete();
     commit('MU_DeleteBookmark', id);
   },
+
   async starBookmark( { commit }, id ) {
     commit('MU_ActiveBookmark', id);
     commit('MU_StarBookmark', id);
