@@ -4,7 +4,7 @@
       {{ tag }}
       <i @click="deleteTag(tag)" class="fas fa-times" title="Delete"></i>
     </li>
-    <input type="text" v-model="tag" v-on:keyup="onKeyPress">
+    <input type="text" v-model="tag" v-on:keyup="onKeyPress" placeholder="Seperate tags with comma">
   </ul>
 </template>
 
@@ -50,7 +50,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    max-width: 600px;
     list-style: none;
     font-size: 0.8rem;
     border: 1px solid #eee;
