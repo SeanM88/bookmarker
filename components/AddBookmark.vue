@@ -4,6 +4,7 @@
     <form @submit="onSubmit">
       <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
       <input type="text" v-model="bookmark.url" placeholder="URL">
+      <input type="text" v-model="bookmark.tags" placeholder="Enter tags seperated by comma">
       <input type="submit" value="Add">
     </form>
 
