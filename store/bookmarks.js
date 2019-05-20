@@ -33,9 +33,12 @@ export const actions = {
   },
 
   async addBookmark( { commit }, bookmark ) {
-    // const response = await refBookmarks.add(bookmark);
-    console.log(bookmark.tags);
-    // commit('MU_AddBookmark', bookmark);
+    const response = await refBookmarks.add(bookmark);
+    commit('MU_AddBookmark', bookmark);
+  },
+
+  async editBookmark( { commit }, bookmark ) {
+
   },
 
   async deleteBookmark( { commit }, id ) {

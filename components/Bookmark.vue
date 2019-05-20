@@ -9,10 +9,9 @@
 
     </a>
 
-    <!-- <ul class="Bookmark-tags TagList">
+    <ul class="Bookmark-tags TagList">
       <li class="TagList-item" v-for="tag in bookmark.tags">{{ tag }}</li>
-    </ul> -->
-    <TagsInput :tags="bookmark.tags" />
+    </ul>
 
     <div class="Bookmark-editTools">
 
@@ -27,14 +26,10 @@
 
 
 <script>
-import TagsInput from './TagsInput';
 import { mapActions } from 'vuex';
 
 export default {
   name: 'Bookmark',
-  components: {
-    TagsInput
-  },
   props: {
     bookmark: {
       type: Object
@@ -42,6 +37,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      editBookmark: 'bookmarks/editBookmark',
       deleteBookmark: 'bookmarks/deleteBookmark',
       starBookmark: 'bookmarks/starBookmark'
     })
@@ -92,20 +88,20 @@ export default {
 
   }
 
-  // .TagList {
-  //   display: flex;
-  //   font-size: 0.75rem;
-  //   list-style: none;
-  //   margin-left: auto;
-  //
-  //   &-item {
-  //     display: inline-block;
-  //     line-height: 1;
-  //     background-color: #eee;
-  //     padding: 0.25em 0.5em;
-  //     margin-right: 4px;
-  //     border-radius: 2px;
-  //     cursor: pointer;
-  //   }
-  // }
+  .TagList {
+    display: flex;
+    font-size: 0.75rem;
+    list-style: none;
+    margin-left: auto;
+
+    &-item {
+      display: inline-block;
+      line-height: 1;
+      background-color: #eee;
+      padding: 0.25em 0.5em;
+      margin-right: 4px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
 </style>

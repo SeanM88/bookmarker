@@ -13,8 +13,7 @@ export default {
   name: 'TagsInput',
   data() {
     return {
-      tag: '',
-      // tags: this.tagdata
+      tag: ''
     }
   },
   props: {

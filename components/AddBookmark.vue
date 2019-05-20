@@ -4,7 +4,8 @@
     <form @submit="onSubmit">
       <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
       <input type="text" v-model="bookmark.url" placeholder="URL">
-      <input type="text" v-model="bookmark.tags" placeholder="Enter tags seperated by comma">
+      <!-- <input type="text" v-model="bookmark.tags" placeholder="Enter tags seperated by comma"> -->
+      <TagsInput :tags="bookmark.tags"/>
       <input type="submit" value="Add">
     </form>
 
@@ -12,10 +13,14 @@
 </template>
 
 <script>
+import TagsInput from './TagsInput'
 import { mapActions } from 'vuex';
 
 export default {
   name: 'AddBookmark',
+  components: {
+    TagsInput
+  },
   data() {
     return {
       bookmark: {
@@ -33,6 +38,12 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       this.addBookmark(this.bookmark);
+      this.bookmark = {
+        title: '',
+        url: '',
+        isFavorite: false,
+        tags: []
+      }
     }
   }
 }
