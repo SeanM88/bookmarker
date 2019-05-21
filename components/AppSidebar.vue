@@ -1,6 +1,15 @@
 <template lang="html">
   <div class="AppSidebar">
-    <p>Sidebar</p>
+    <ul class="SidebarMenu">
+
+      <li>
+        <nuxt-link to="/bookmarks">Bookmarks</nuxt-link>
+      </li>
+      <li>Notes</li>
+      <li>Projects</li>
+      <li>To Dos</li>
+
+    </ul>
   </div>
 </template>
 
@@ -10,11 +19,21 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
   .AppSidebar {
     display: block;
-    background: #eee;
+    background: #000;
+    color: #fff;
     width: 200px;
     height: 100%;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .SidebarMenu {
+    list-style: none;
   }
 </style>

@@ -34,6 +34,7 @@ export const actions = {
 
   async addBookmark( { commit }, bookmark ) {
     const response = await refBookmarks.add(bookmark);
+    bookmark.id = response.id;
     commit('MU_AddBookmark', bookmark);
   },
 
