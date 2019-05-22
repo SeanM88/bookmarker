@@ -33,13 +33,14 @@ export const actions = {
   },
 
   async addBookmark( { commit }, bookmark ) {
+    bookmark.created = Date.now();
     const response = await refBookmarks.add(bookmark);
     bookmark.id = response.id;
     commit('MU_AddBookmark', bookmark);
   },
 
   async editBookmark( { commit }, bookmark ) {
-
+    bookmark.modified = Date.now();
   },
 
   async deleteBookmark( { commit }, id ) {
