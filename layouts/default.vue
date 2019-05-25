@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <!-- <AppHeader /> -->
-    <AppSidebar />
+    <!-- <NavBar /> -->
+    <SideBar />
     <nuxt />
   </div>
 </template>
 
 <script>
-// import AppHeader from '../components/AppHeader';
-import AppSidebar from '../components/AppSidebar';
+// import NavBar from '../components/navigation/NavBar';
+import SideBar from '../components/navigation/SideBar';
 
 export default {
   components: {
-    // AppHeader,
-    AppSidebar
+    // NavBar,
+    SideBar
   }
 }
 </script>

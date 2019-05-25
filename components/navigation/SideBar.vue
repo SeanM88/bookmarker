@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="AppSidebar">
-    <ul class="SidebarMenu">
+  <div class="SideBar">
+    <ul class="SideBar-menu">
 
       <li>
         <nuxt-link to="/bookmarks">Bookmarks</nuxt-link>
@@ -15,12 +15,12 @@
 
 <script>
 export default {
-  name: 'AppSidebar'
+  name: 'SideBar'
 }
 </script>
 
 <style lang="scss" scoped>
-  .AppSidebar {
+  .SideBar {
     display: block;
     background: #000;
     color: #fff;
@@ -33,7 +33,7 @@ export default {
     }
   }
 
-  .SidebarMenu {
+  .SideBar-menu {
     list-style: none;
   }
 </style>
