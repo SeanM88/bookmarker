@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="Page Page--bookmarks">
+  <div class="Page--bookmarks">
     <section class="Bookmarks">
       <header class="Bookmarks-header">
         <h1>Bookmarks</h1>
@@ -53,13 +53,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .Page {
-    padding: 2rem;
-  }
+
   .Bookmarks-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
     border-bottom: 1px solid #eee;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;

@@ -3,11 +3,21 @@
     <ul class="SideBar-menu">
 
       <li>
+        <i class="fas fa-bookmark"></i>
         <nuxt-link to="/bookmarks">Bookmarks</nuxt-link>
       </li>
-      <li>Notes</li>
-      <li>Projects</li>
-      <li>To Dos</li>
+      <li>
+        <i class="fas fa-sticky-note"></i>
+        Notes
+      </li>
+      <li>
+        <i class="fas fa-parking"></i>
+        Projects
+      </li>
+      <li>
+        <i class="fas fa-tasks"></i>
+        Tasks
+      </li>
 
     </ul>
   </div>
@@ -21,14 +31,22 @@ export default {
 
 <style lang="scss" scoped>
   .SideBar {
-    display: block;
-    background: #000;
-    color: #fff;
-    width: 200px;
+    flex: initial;
+    font-size: 1.125rem;
+    padding: 2rem;
+    background: #eee;
     height: 100%;
 
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-bottom: 1rem;
+      }
+    }
+
     a {
-      color: inherit;
       text-decoration: none;
     }
   }
