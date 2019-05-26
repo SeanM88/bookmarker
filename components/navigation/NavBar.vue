@@ -1,7 +1,10 @@
 <template lang="html">
   <nav class="NavBar">
-    <a href="#">Login</a>
-    <a href="#">Sign Up</a>
+  <!-- v-if: loggedIn = true -->
+    <!-- <nuxt-link to="/account/logout">Log Out</nuxt-link> -->
+  <!-- v-else: -->
+    <nuxt-link to="/account/login">Login</nuxt-link>
+    <nuxt-link to="/account/signup">Sign Up</nuxt-link>
   </nav>
 </template>
 
