@@ -1,5 +1,6 @@
 <template lang="html">
   <nav class="NavBar">
+    <nuxt-link to="/" class="Logo">Bookmarker</nuxt-link>
   <!-- v-if: loggedIn = true -->
     <!-- <nuxt-link to="/account/logout">Log Out</nuxt-link> -->
   <!-- v-else: -->
@@ -19,13 +20,17 @@ export default {
     display: flex;
     justify-content: flex-end;
     background: #000;
+    padding: 0 0.75rem;
 
     a {
       text-decoration: none;
       color: #fff;
       display: inline-block;
-      padding: 0.5em;
+      padding: 0.75em;
       margin-right: 1rem;
+    }
+    .Logo {
+      margin-right: auto;
     }
   }
 </style>
