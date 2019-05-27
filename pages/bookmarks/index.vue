@@ -55,8 +55,6 @@ export default {
 <style lang="scss" scoped>
 
   .Bookmarks-header {
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #eee;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;

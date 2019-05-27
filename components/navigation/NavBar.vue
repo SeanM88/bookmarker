@@ -1,17 +1,29 @@
 <template lang="html">
   <nav class="NavBar">
+
     <nuxt-link to="/" class="Logo">Bookmarker</nuxt-link>
-  <!-- v-if: loggedIn = true -->
-    <!-- <nuxt-link to="/account/logout">Log Out</nuxt-link> -->
-  <!-- v-else: -->
-    <nuxt-link to="/account/login">Login</nuxt-link>
-    <nuxt-link to="/account/signup">Sign Up</nuxt-link>
+
+    <template v-if="isAuthenticated">
+      <nuxt-link to="/account/logout">Log Out</nuxt-link>
+    </template>
+    <template v-else>
+      <nuxt-link to="/account/login">Login</nuxt-link>
+      <nuxt-link to="/account/signup">Sign Up</nuxt-link>
+    </template>
+
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  computed: {
+    // TODO: Might need to be moved/rebuilt as vuex method
+    isAuthenticated() {
+      // return JSON.parse(localStorage.getItem('authenticated'));
+      return false;
+    }
+  }
 }
 </script>
 

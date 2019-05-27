@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { fireDb } from '~/plugins/firebase.js';
 
 // set reference to 'bookmarks' collection in firestore
@@ -10,6 +9,7 @@ export const state = () => ({
   active: {}
 });
 
+// GETTERS
 export const getters = {
   onlyStarred: (state) => state.all.filter(bookmark => bookmark.isFavorite === true)
 }
