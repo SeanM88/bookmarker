@@ -5,7 +5,7 @@
       <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
       <input type="text" v-model="bookmark.url" placeholder="URL">
       <TagsInput :tags="bookmark.tags"/>
-      <input type="submit" value="Save" class="Button">
+      <button class="Button">Save</button>
     </form>
 
   </div>

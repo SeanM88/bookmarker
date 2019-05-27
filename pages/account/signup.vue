@@ -3,14 +3,12 @@
 
     <i class="fas fa-user-circle"></i>
 
-    <form class="Form">
+    <form class="Form" @submit="onSubmit">
       <div class="InputField">
-        <!-- <label for="account-email">Email address:</label> -->
-        <input type="email" id="account-email" placeholder="Email" required />
+        <input type="email" v-model="user.email" placeholder="Email" required />
       </div>
       <div class="InputField">
-        <!-- <label for="account-password">Password:</label> -->
-        <input type="password" id="account-password" placeholder="Password" required />
+        <input type="password" v-model="user.password" placeholder="Password" required />
       </div>
       <button class="Button">Sign Up</button>
     </form>
@@ -22,8 +20,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   layout: 'landing',
+  data() {
+    return {
+      user: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      createUser: 'account/createUser'
+    }),
+    onSubmit(e) {
+      e.preventDefault();
+      this.createUser(this.user);
+      this.user.email = '';
+      this.user.password = '';
+    }
+  }
 }
 </script>
 
