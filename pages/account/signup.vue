@@ -5,10 +5,10 @@
 
     <form class="Form" @submit="onSubmit">
       <div class="InputField">
-        <input type="email" v-model="user.email" placeholder="Email" required />
+        <input type="email" v-model="userInput.email" placeholder="Email" required />
       </div>
       <div class="InputField">
-        <input type="password" v-model="user.password" placeholder="Password" required />
+        <input type="password" v-model="userInput.password" placeholder="Password" required />
       </div>
       <button class="Button">Sign Up</button>
     </form>
@@ -26,7 +26,7 @@ export default {
   layout: 'landing',
   data() {
     return {
-      user: {
+      userInput: {
         email: '',
         password: ''
       }
@@ -38,9 +38,7 @@ export default {
     }),
     onSubmit(e) {
       e.preventDefault();
-      this.createUser(this.user);
-      this.user.email = '';
-      this.user.password = '';
+      this.createUser(this.userInput);
     }
   }
 }

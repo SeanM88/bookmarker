@@ -15,14 +15,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'NavBar',
   computed: {
-    // TODO: Might need to be moved/rebuilt as vuex method
-    isAuthenticated() {
-      // return JSON.parse(localStorage.getItem('authenticated'));
-      return false;
-    }
+    ...mapState({
+      isAuthenticated: state => state.account.isAuthenticated,
+      user: state => state.account.user
+    })
   }
 }
 </script>
