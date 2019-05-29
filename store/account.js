@@ -22,7 +22,7 @@ export const actions = {
     //   photo: credentials.user.photoURL
     // };
     // Set active user in store
-    commit('MU_SetActiveUser', user);
+    // commit('MU_SetActiveUser', user);
   },
 
   // Sign in

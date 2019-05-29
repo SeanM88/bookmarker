@@ -1,6 +1,10 @@
 export default ({ store, redirect, route }) => {
-  store.state.account.user !== null && route.name === 'login' ? redirect('/') : '';
-  store.state.account.user === null && isProtectedRoute(route) ? redirect('/login') : '';
+  if (store.state.account.isAuthenticated) {
+    route.name === 'account-signup' ? redirect('/') : '';
+    route.name === 'account-login' ? redirect('/') : '';
+  } else {
+    isProtectedRoute(route) ? redirect('/login') : '';
+  }
 };
 
 // Function to protect a route, can replace '/protected' with whatever
