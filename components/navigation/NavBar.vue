@@ -4,7 +4,7 @@
     <nuxt-link to="/" class="Logo">Bookmarker</nuxt-link>
 
     <template v-if="isAuthenticated">
-      <a href="/" @click="signOut">Sign Out - {{ user.email }}</a>
+      <a href="#" @click="logOut">Sign Out - {{ user.email }}</a>
     </template>
     <template v-else>
       <nuxt-link to="/account/login">Login</nuxt-link>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      signOut: 'account/signOut'
+      logOut: 'account/logOut'
     })
   }
 }

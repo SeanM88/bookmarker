@@ -6,7 +6,6 @@ export default (context) => {
   return new Promise((resolve, reject) => {
     fireAuth.onAuthStateChanged(user => {
       if (user) {
-        console.log(user.email);
         let activeUser = {
           displayName: user.displayName,
           email: user.email,

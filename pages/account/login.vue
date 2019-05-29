@@ -45,11 +45,11 @@ export default {
   },
   methods: {
     ...mapActions({
-      signIn: 'account/signIn'
+      logIn: 'account/logIn'
     }),
     onSubmit(e) {
       e.preventDefault();
-      this.signIn(this.userInput);
+      this.logIn(this.userInput);
     }
   },
   head() {
