@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="Page--signup">
+  <div class="Page--login">
 
     <i class="fas fa-user-circle"></i>
 
@@ -12,10 +12,10 @@
       <div class="InputField">
         <input type="password" v-model="userInput.password" placeholder="Password" required />
       </div>
-      <button class="Button">Sign Up</button>
+      <button class="Button">Log In</button>
     </form>
 
-    <p>Already have an account? <nuxt-link to="/account/login">Log In</nuxt-link>
+    <p>Don't have an account? <nuxt-link to="/account/signup">Sign Up</nuxt-link>
     </p>
 
   </div>
@@ -45,23 +45,23 @@ export default {
   },
   methods: {
     ...mapActions({
-      createUser: 'account/createUser'
+      signIn: 'account/signIn'
     }),
     onSubmit(e) {
       e.preventDefault();
-      this.createUser(this.userInput);
+      this.signIn(this.userInput);
     }
   },
   head() {
     return {
-      title: 'Sign up | Bookmarker'
+      title: 'Welcome back! | Bookmarker'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .Page--signup {
+  .Page--login {
     display: flex;
     flex-direction: column;
     justify-content: center;

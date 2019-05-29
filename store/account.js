@@ -15,27 +15,27 @@ export const actions = {
     const credentials = await fireAuth
       .createUserWithEmailAndPassword(userData.email, userData.password)
       .catch( error => {
-         console.log('Error: ' + error.message)
          let alert = {
            type: 'error',
            message: error.message
          }
          commit('MU_AccountAlert', alert);
       });
-
-    // Build user object for store
-    // const user = {
-    //   uid: credentials.user.uid,
-    //   email: credentials.user.email,
-    //   photo: credentials.user.photoURL
-    // };
-    // Set active user in store
-    // commit('MU_SetActiveUser', user);
+      // Currently state is updated in plugins/auth.js
   },
 
   // Sign in
-  async signIn( { commit } ) {
-
+  async signIn( { commit }, userData ) {
+    const credentials = await fireAuth
+      .signInWithEmailAndPassword(userData.email, userData.password)
+      .catch( error => {
+         let alert = {
+           type: 'error',
+           message: error.message
+         }
+         commit('MU_AccountAlert', alert);
+      });
+      // Currently state is updated in plugins/auth.js
   },
 
   // Sign out
@@ -49,7 +49,7 @@ export const actions = {
 
 // MUTATIONS
 export const mutations = {
-  MU_AccountAlert: (state, alert) => state.alerts.push(alert),
+  MU_AccountAlert: (state, alert) => state.alerts = [alert],
   MU_SetActiveUser: (state, user) => {
     state.isAuthenticated = true;
     (state.user = user);
