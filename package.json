@@ -1,7 +1,7 @@
 {
   "name": "bookmarker",
   "version": "1.0.0",
-  "description": "Bookmark keeping app",
+  "description": "Productivy app",
   "author": "Sean Megan",
   "private": true,
   "scripts": {

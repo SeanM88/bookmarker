@@ -1,9 +1,9 @@
-import { fireAuth } from '~/plugins/firebase.js';
+import { fireAuth } from '@/plugins/firebase.js';
 
 // STATE
 export const state = () => ({
   isAuthenticated: false,
-  user: {}
+  user: null
 });
 
 // ACTIONS
@@ -16,11 +16,11 @@ export const actions = {
       .catch( error => console.log('Error: ' + error.message) );
 
     // Build user object for store
-    const user = {
-      uid: credentials.user.uid,
-      email: credentials.user.email,
-      photo: credentials.user.photoURL
-    };
+    // const user = {
+    //   uid: credentials.user.uid,
+    //   email: credentials.user.email,
+    //   photo: credentials.user.photoURL
+    // };
     // Set active user in store
     commit('MU_SetActiveUser', user);
   },
@@ -32,9 +32,9 @@ export const actions = {
 
   // Sign out
   async signOut( { commit } ) {
-    const response = await fireAuth.signOut();
+    await fireAuth.signOut();
     // Clear active user in store
-    // commit('MU_ClearActiveUser');
+    commit('MU_ClearActiveUser');
   },
 
 };

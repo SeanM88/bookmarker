@@ -4,7 +4,7 @@
     <nuxt-link to="/" class="Logo">Bookmarker</nuxt-link>
 
     <template v-if="isAuthenticated">
-      <nuxt-link to="/account/logout">Log Out</nuxt-link>
+      <a @click="signOut">Sign Out</a>
     </template>
     <template v-else>
       <nuxt-link to="/account/login">Login</nuxt-link>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'NavBar',
@@ -23,6 +23,11 @@ export default {
     ...mapState({
       isAuthenticated: state => state.account.isAuthenticated,
       user: state => state.account.user
+    })
+  },
+  methods: {
+    ...mapActions({
+      signOut: 'account/signOut'
     })
   }
 }

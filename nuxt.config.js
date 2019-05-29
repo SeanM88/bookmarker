@@ -36,8 +36,19 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    './plugins/firebase.js'
+    './plugins/firebase.js',
+    './plugins/auth.js'
   ],
+
+  /*
+  ** The router property lets you customize Nuxt.js router
+  ** - https://nuxtjs.org/api/configuration-router
+  */
+  router: {
+    middleware: [
+      'authroutes'
+    ]
+  },
 
   /*
   ** Nuxt.js modules
