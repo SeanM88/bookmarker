@@ -19,8 +19,8 @@
 // vuex helpers
 import { mapState, mapActions } from 'vuex';
 // Components
-import BookmarkForm from '../../components/bookmarks/BookmarkForm';
-import Bookmark from '../../components/bookmarks/Bookmark';
+import BookmarkForm from '@/components/bookmarks/BookmarkForm';
+import Bookmark from '@/components/bookmarks/Bookmark';
 
 export default {
   components: {

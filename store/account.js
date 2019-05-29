@@ -3,7 +3,8 @@ import { fireAuth } from '@/plugins/firebase.js';
 // STATE
 export const state = () => ({
   isAuthenticated: false,
-  user: null
+  user: null,
+  alerts: []
 });
 
 // ACTIONS
@@ -13,7 +14,14 @@ export const actions = {
   async createUser( { commit }, userData ) {
     const credentials = await fireAuth
       .createUserWithEmailAndPassword(userData.email, userData.password)
-      .catch( error => console.log('Error: ' + error.message) );
+      .catch( error => {
+         console.log('Error: ' + error.message)
+         let alert = {
+           type: 'error',
+           message: error.message
+         }
+         commit('MU_AccountAlert', alert);
+      });
 
     // Build user object for store
     // const user = {
@@ -41,6 +49,7 @@ export const actions = {
 
 // MUTATIONS
 export const mutations = {
+  MU_AccountAlert: (state, alert) => state.alerts.push(alert),
   MU_SetActiveUser: (state, user) => {
     state.isAuthenticated = true;
     (state.user = user);

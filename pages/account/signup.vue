@@ -3,6 +3,8 @@
 
     <i class="fas fa-user-circle"></i>
 
+    <AlertBox v-for="(alert, index) in alerts" :key="index" :alert="alert"/>
+
     <form class="Form" @submit="onSubmit">
       <div class="InputField">
         <input type="email" v-model="userInput.email" placeholder="Email" required />
@@ -20,10 +22,19 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
+import AlertBox from '@/components/utils/AlertBox.vue';
 
 export default {
   layout: 'landing',
+  components: {
+    AlertBox
+  },
+  computed: {
+    ...mapState({
+      alerts: state => state.account.alerts
+    })
+  },
   data() {
     return {
       userInput: {
