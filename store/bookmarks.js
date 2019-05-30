@@ -1,7 +1,10 @@
 import { fireDb } from '~/plugins/firebase.js';
 
-// set reference to 'bookmarks' collection in firestore
-const refBookmarks = fireDb.collection('bookmarks');
+// set reference to top level 'Bookmarks' collection in firestore
+const refBookmarks = fireDb.collection('Bookmarks');
+// set reference to top level 'Users' collection in firestore
+// const refUsers = fireDb.collection('Users');
+
 
 // STATE
 export const state = () => ({
@@ -17,9 +20,17 @@ export const getters = {
 // ACTIONS - CRUD backend data
 export const actions = {
 
-  async fetchBookmarks( { commit } ) {
-    // Get snapshot of bookmarks collection
+  async fetchBookmarks( { commit, rootState } ) {
+
+    // Get current user's uid for referencing user doc in firestore
+    // const userId = rootState.account.user.uid;
+    // Get snapshot of current User's 'Bookmarks' collection
+    // const snapshot = await refUsers.doc(userId).collection('Bookmarks').get();
+
+    // TODO: replace this with user specific collection method above
+    // Get snapshot of 'Bookmarks' collection
     const snapshot = await refBookmarks.get();
+
     // Build array of bookmarks from snapshot data
     const items = [];
     for ( let item of snapshot.docs ) {
