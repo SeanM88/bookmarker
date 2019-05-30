@@ -17,7 +17,7 @@
 
 <script>
 // vuex helpers
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 // Components
 import BookmarkForm from '@/components/bookmarks/BookmarkForm';
 import Bookmark from '@/components/bookmarks/Bookmark';
@@ -39,15 +39,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      fetchBookmarks: 'bookmarks/fetchBookmarks'
-    }),
     addBookmarkForm() {
       this.formOpen = !this.formOpen;
     }
   },
-  created() {
-    this.fetchBookmarks();
+  async fetch ({ store, params }) {
+    await store.dispatch('bookmarks/fetchBookmarks');
   }
 }
 </script>
