@@ -49,6 +49,7 @@ export const actions = {
     await fireAuth.signOut();
     // Clear active user in store
     commit('MU_ClearActiveUser');
+    commit('account/MU_ClearBookmarks');
     this.$router.push('account/login');
   },
 

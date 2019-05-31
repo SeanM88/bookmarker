@@ -43,8 +43,11 @@ export default {
       this.formOpen = !this.formOpen;
     }
   },
-  async fetch ({ store, params }) {
-    await store.dispatch('bookmarks/fetchBookmarks');
+  created() {
+    if (this.$store.state.account.isAuthenticated) {
+      return this.$store.dispatch('bookmarks/fetchBookmarks');
+    }
+    console.log('No user currently logged in!');
   }
 }
 </script>
