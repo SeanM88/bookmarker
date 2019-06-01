@@ -43,11 +43,17 @@ export default {
       this.formOpen = !this.formOpen;
     }
   },
-  created() {
+  async created() {
+    // Only attempt to fetch bookmarks for logged in users
     if (this.$store.state.account.isAuthenticated) {
-      return this.$store.dispatch('bookmarks/fetchBookmarks');
+      // Only fetch once to fill state, use state from there
+      if (this.$store.state.bookmarks.all.length === 0) {
+        // TODO: If user actually hasn't created any bookmarks this
+        // will still fire every page component load.
+        console.log('ALERT — fetchBookmarks() ran here!');
+        await this.$store.dispatch('bookmarks/fetchBookmarks');
+      }
     }
-    console.log('No user currently logged in!');
   }
 }
 </script>
