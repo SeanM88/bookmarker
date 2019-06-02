@@ -1,35 +1,53 @@
 <template lang="html">
   <div class="Bookmark">
 
-    <a class="Bookmark-link" :href="bookmark.url" :title="bookmark.url">
+    <div class="Bookmark-content">
 
-      <img class="Bookmark-favicon" :src="bookmark.url + '/favicon.ico'" target="_blank">
+      <a class="Bookmark-link" :href="bookmark.url" :title="bookmark.url">
 
-      {{ bookmark.title }}
+        <img class="Bookmark-favicon" :src="bookmark.url + '/favicon.ico'" target="_blank">
 
-    </a>
+        {{ bookmark.title }}
 
-    <ul class="Bookmark-tags TagList">
-      <li class="TagList-item" v-for="tag in bookmark.tags">{{ tag }}</li>
-    </ul>
+      </a>
 
-    <div class="Bookmark-editTools">
+      <ul class="Bookmark-tags TagList">
+        <li class="TagList-item" v-for="tag in bookmark.tags">{{ tag }}</li>
+      </ul>
 
-      <i @click="starBookmark(bookmark)" class="fas fa-star" :class="{ 'u-isFavorite': bookmark.isFavorite }" title="Favorite"></i>
-      <i @click="editBookmark(bookmark.id)" class="fas fa-edit" title="Edit"></i>
-      <i @click="deleteBookmark(bookmark.id)" class="fas fa-trash" title="Delete"></i>
+      <div class="Bookmark-editTools">
+
+        <i @click="starBookmark(bookmark)" class="fas fa-star" :class="{ 'u-isFavorite': bookmark.isFavorite }" title="Favorite"></i>
+        <i @click="toggleForm" class="fas fa-edit" title="Edit"></i>
+        <i @click="deleteBookmark(bookmark.id)" class="fas fa-trash" title="Delete"></i>
+
+      </div>
 
     </div>
+
+    <BookmarkForm v-if="formOpen" :bookmarkData="bookmark" is-published/>
 
   </div>
 </template>
 
 
 <script>
+// vuex helpers
 import { mapActions } from 'vuex';
+// Components
+import BookmarkForm from '@/components/bookmarks/BookmarkForm';
+// Utils
+import formToggle from '@/mixins/formToggle.js';
+
 
 export default {
   name: 'Bookmark',
+  components: {
+    BookmarkForm
+  },
+  mixins: [
+    formToggle
+  ],
   props: {
     bookmark: {
       type: Object
@@ -37,7 +55,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      editBookmark: 'bookmarks/editBookmark',
       deleteBookmark: 'bookmarks/deleteBookmark',
       starBookmark: 'bookmarks/starBookmark'
     })
@@ -48,9 +65,12 @@ export default {
 
 <style lang="scss" scoped>
   .Bookmark {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &-link {
       display: flex;

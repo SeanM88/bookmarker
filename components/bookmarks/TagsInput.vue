@@ -1,6 +1,6 @@
 <template lang="html">
   <ul class="TagsInput">
-    <li v-for="tag in tags" class="TagsInput-tag">
+    <li v-for="tag in tagList" class="TagsInput-tag">
       {{ tag }}
       <i @click="deleteTag(tag)" class="fas fa-times" title="Delete"></i>
     </li>
@@ -13,23 +13,25 @@ export default {
   name: 'TagsInput',
   data() {
     return {
-      tag: ''
+      tag: '',
+      tagList: this.tags
     }
   },
   props: {
     tags: {
-      type: Array
+      type: Array,
+      default() { return [] }
     }
   },
   methods: {
     addTag(tag) {
-      if ( this.tags.indexOf(tag) === -1 ) {
-        this.tags.push(tag);
+      if ( this.tagList.indexOf(tag) === -1 ) {
+        this.tagList.push(tag);
       }
       this.tag = '';
     },
     deleteTag(tag) {
-      this.tags = this.tags.filter(item => item !== tag);
+      this.tagList = this.tagList.filter(item => item !== tag);
     },
     onKeyPress(e) {
       e.preventDefault();

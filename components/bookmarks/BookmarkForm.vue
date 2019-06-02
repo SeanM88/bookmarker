@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="BookmarkForm">
 
-    <form @submit="onSubmit">
+    <form @submit.prevent="onSubmit" @keydown.enter.prevent.self>
       <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
       <input type="text" v-model="bookmark.url" placeholder="URL">
       <TagsInput :tags="bookmark.tags"/>
-      <button class="Button">Save</button>
+      <button type="submit" class="Button">Save</button>
     </form>
 
   </div>
@@ -23,20 +23,49 @@ export default {
   data() {
     return {
       bookmark: {
-        title: '',
-        url: '',
-        isFavorite: false,
-        tags: []
+        title: this.bookmarkData.title,
+        url: this.bookmarkData.url,
+        isFavorite: this.bookmarkData.isFavorite,
+        tags: this.bookmarkData.tags,
+        id: this.bookmarkData.id,
+        created: this.bookmarkData.created
+      }
+    }
+  },
+  props: {
+    bookmarkData: {
+      type: Object,
+      default() {
+        return {
+          title: '',
+          url: '',
+          isFavorite: false,
+          tags: []
+        }
+      }
+    },
+    isPublished: {
+      type: Boolean,
+      required: false,
+      default() {
+        return false;
       }
     }
   },
   methods: {
     ...mapActions({
-      addBookmark: 'bookmarks/addBookmark'
+      addBookmark: 'bookmarks/addBookmark',
+      editBookmark: 'bookmarks/editBookmark'
     }),
-    onSubmit(e) {
-      e.preventDefault();
-      this.addBookmark(this.bookmark);
+    onSubmit() {
+      if (this.isPublished) {
+        console.log('EDIT FIRED!')
+        console.log(this.bookmark.title);
+        this.editBookmark(this.bookmark);
+      } else {
+        console.log('CREATE FIRED!')
+        this.addBookmark(this.bookmark);
+      }
       this.bookmark = {
         title: '',
         url: '',

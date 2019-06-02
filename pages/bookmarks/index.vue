@@ -3,10 +3,11 @@
     <section class="Bookmarks">
       <header class="Bookmarks-header">
         <h1>Bookmarks</h1>
-        <button @click="addBookmarkForm" class="Button">Add Bookmark</button>
+        <button @click="toggleForm" class="Button">Add Bookmark</button>
       </header>
-      <!-- <template v-if -->
+
       <BookmarkForm v-if="formOpen"/>
+
       <Bookmark v-for="bookmark in bookmarks"
         :key="bookmark.id"
         :bookmark="bookmark"
@@ -19,29 +20,25 @@
 // vuex helpers
 import { mapState } from 'vuex';
 // Components
-import BookmarkForm from '@/components/bookmarks/BookmarkForm';
 import Bookmark from '@/components/bookmarks/Bookmark';
+import BookmarkForm from '@/components/bookmarks/BookmarkForm';
+// Utils
+import formToggle from '@/mixins/formToggle.js';
+
 
 export default {
   components: {
-    BookmarkForm,
-    Bookmark
+    Bookmark,
+    BookmarkForm
   },
+  mixins: [
+    formToggle
+  ],
   computed: {
-  // mapState docs: https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
+    // mapState docs: https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
     ...mapState({
       bookmarks: state => state.bookmarks.all
     })
-  },
-  data() {
-    return {
-      formOpen: false
-    }
-  },
-  methods: {
-    addBookmarkForm() {
-      this.formOpen = !this.formOpen;
-    }
   },
   async created() {
     // Only attempt to fetch bookmarks for logged in users

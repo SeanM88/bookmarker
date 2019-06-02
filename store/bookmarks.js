@@ -51,6 +51,15 @@ export const actions = {
 
   async editBookmark( { commit, rootState }, bookmark ) {
     bookmark.modified = Date.now();
+    console.log(bookmark.id)
+    // Get current user's uid for referencing user doc in firestore
+    const uid = rootState.account.user.uid;
+
+    const response = await refUsers.doc(uid)
+      .collection('Bookmarks').doc(bookmark.id).set(bookmark)
+
+    // Commit should replace old bookmark with new bookmark in state
+    // commit('MU_UpdateBookmark', bookmark);
   },
 
   async deleteBookmark( { commit, rootState }, id ) {
@@ -83,6 +92,7 @@ export const mutations = {
   MU_ClearBookmarks: (state) => state.all = [],
   MU_ActiveBookmark: (state, bookmark) => (state.active = bookmark),
   MU_AddBookmark: (state, bookmark) => state.all.unshift(bookmark),
+  // MU_UpdateBookmark: (state, bookmark) =
   MU_DeleteBookmark: (state, id) => state.all = state.all.filter(bookmark => id !== bookmark.id),
   MU_StarBookmark: (state, id) => state.active.isFavorite = !state.active.isFavorite
 };
