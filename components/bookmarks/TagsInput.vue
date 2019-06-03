@@ -23,6 +23,11 @@ export default {
       default() { return [] }
     }
   },
+  watch: {
+    tagList: function(newTags, oldTags) {
+      this.$emit('tagsUpdated', newTags);
+    }
+  },
   methods: {
     addTag(tag) {
       if ( this.tagList.indexOf(tag) === -1 ) {

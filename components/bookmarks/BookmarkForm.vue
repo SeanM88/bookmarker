@@ -4,7 +4,7 @@
     <form @submit.prevent="onSubmit" @keydown.enter.prevent.self>
       <input type="text" v-model="bookmark.title" placeholder="Bookmark Title...">
       <input type="text" v-model="bookmark.url" placeholder="URL">
-      <TagsInput :tags="bookmark.tags"/>
+      <TagsInput :tags="bookmark.tags" v-on:tagsUpdated="updateTags"/>
       <button type="submit" class="Button">Save</button>
     </form>
 
@@ -57,6 +57,9 @@ export default {
       addBookmark: 'bookmarks/addBookmark',
       editBookmark: 'bookmarks/editBookmark'
     }),
+    updateTags(newTags) {
+      this.bookmark.tags = newTags;
+    },
     onSubmit() {
       if (this.isPublished) {
         console.log('EDIT FIRED!')
