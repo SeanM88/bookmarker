@@ -61,13 +61,11 @@ export default {
       this.bookmark.tags = newTags;
     },
     onSubmit() {
+      // (isPublished = true) means we're editing existing bookmark
       if (this.isPublished) {
-        console.log('EDIT FIRED!')
-        console.log(this.bookmark.title);
-        console.log(this.bookmark.created);
         this.editBookmark(this.bookmark);
+      // otherwise we're creating new bookmark
       } else {
-        console.log('CREATE FIRED!')
         this.addBookmark(this.bookmark);
       }
       this.bookmark = {

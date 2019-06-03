@@ -39,6 +39,8 @@ export const actions = {
 
   async addBookmark( { commit, rootState }, bookmark ) {
     bookmark.created = Date.now();
+    // Initialize modified so it exists even if it hasn't actually been edited
+    bookmark.modified = bookmark.created;
     // Get current user's uid for referencing user doc in firestore
     const uid = rootState.account.user.uid;
 
@@ -51,7 +53,7 @@ export const actions = {
 
   async editBookmark( { commit, rootState }, bookmark ) {
     bookmark.modified = Date.now();
-    console.log(bookmark.id)
+
     // Get current user's uid for referencing user doc in firestore
     const uid = rootState.account.user.uid;
 
