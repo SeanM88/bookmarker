@@ -27,8 +27,8 @@ export default {
         url: this.bookmarkData.url,
         isFavorite: this.bookmarkData.isFavorite,
         tags: this.bookmarkData.tags,
-        id: this.bookmarkData.id,
-        created: this.bookmarkData.created
+        ...(this.bookmarkData.id ? { id: this.bookmarkData.id } : null),
+        ...(this.bookmarkData.created ? { created: this.bookmarkData.created } : null)
       }
     }
   },
@@ -61,6 +61,7 @@ export default {
       if (this.isPublished) {
         console.log('EDIT FIRED!')
         console.log(this.bookmark.title);
+        console.log(this.bookmark.created);
         this.editBookmark(this.bookmark);
       } else {
         console.log('CREATE FIRED!')

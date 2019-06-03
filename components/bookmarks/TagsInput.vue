@@ -26,7 +26,7 @@ export default {
   methods: {
     addTag(tag) {
       if ( this.tagList.indexOf(tag) === -1 ) {
-        this.tagList.push(tag);
+        this.tagList = [...this.tagList, tag];
       }
       this.tag = '';
     },
