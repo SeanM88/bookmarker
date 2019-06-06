@@ -16,10 +16,14 @@ const config = {
 // Prevent "Firebase app already exists" error
 !firebase.apps.length ? firebase.initializeApp(config) : ''
 
-// Create references to Firebase authentication and firestore services
+// Create reference to Firebase Authentication service
 const fireAuth = firebase.auth();
+// Create refrences to Google and Facebook auth providers
+const providerGoogle = new firebase.auth.GoogleAuthProvider();
+// const providerFacebook = new firebase.auth.FacebookAuthProvider();
+
+// Create reference to Firebase Firestore service
 const fireDb = firebase.firestore();
-// const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 
 // Export references so we can import them wherever necessary
-export { fireAuth, fireDb };
+export { fireAuth, fireDb, providerGoogle };

@@ -25,13 +25,17 @@ export default {
   .AlertBox {
     background: #eee;
     width: 100%;
-    max-width: 400px;
+    max-width: 32em;
     text-align: center;
     padding: 1em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 
     &--error {
       background: $error-red;
+      color: #fff;
+    }
+    &--info {
+      background: $google-blue;
       color: #fff;
     }
 

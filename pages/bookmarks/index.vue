@@ -42,7 +42,7 @@ export default {
   },
   async created() {
     // Only attempt to fetch bookmarks for logged in users
-    if (this.$store.state.account.isAuthenticated) {
+    if (this.$store.state.account.isVerified) {
       // Only fetch once to fill state, use state from there
       if (this.$store.state.bookmarks.all.length === 0) {
         // TODO: If user actually hasn't created any bookmarks this
