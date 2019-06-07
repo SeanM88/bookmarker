@@ -2,9 +2,7 @@ import { fireAuth, providerGoogle } from '@/plugins/firebase.js';
 
 // STATE
 export const state = () => ({
-  isVerified: false,
-  user: null,
-  alerts: []
+  user: null
 });
 
 // ACTIONS
@@ -22,18 +20,13 @@ export const actions = {
 
       // this.$router.push('/account/login');
 
-      // let alert = {
-      //   type: 'info',
-      //   message: 'Please use the link in the email you just received to verify your account and then return to this page to sign in'
-      // }
-      // commit('MU_AccountAlert', alert);
-
     } catch (error) {
       let alert = {
         type: 'error',
         message: error.message
       }
-      commit('MU_AccountAlert', alert);
+      // commit('MU_AccountAlert', alert);
+      commit('alerts/MU_AccountAlert', alert, {root: true});
     }
     // Currently state is updated in plugins/auth.js
   },
@@ -64,7 +57,7 @@ export const actions = {
         type: 'error',
         message: error.message
       }
-      commit('MU_AccountAlert', alert);
+      commit('alerts/MU_AccountAlert', alert, {root: true});
     }
     // Currently state is updated in plugins/auth.js
   },
@@ -80,7 +73,8 @@ export const actions = {
         type: 'error',
         message: error.message
       }
-      commit('MU_AccountAlert', alert);
+      // commit('MU_AccountAlert', alert);
+      commit('alerts/MU_AccountAlert', alert, {root: true});
     }
 
   },
@@ -98,16 +92,14 @@ export const actions = {
 
 // MUTATIONS
 export const mutations = {
-  MU_AccountAlert: (state, alert) => state.alerts = [alert],
+  // MU_AccountAlert: (state, alert) => state.alerts = [alert],
 
   MU_SetActiveUser: (state, user) => {
     console.log('MU_SetActiveUser just ran!');
-    state.isVerified = true;
     (state.user = user);
   },
 
   MU_ClearActiveUser: (state) => {
-    state.isVerified = false;
     state.user = null;
   }
 };

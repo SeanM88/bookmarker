@@ -1,12 +1,12 @@
 <template lang="html">
-  <div class="AlertBox" :class="'AlertBox--' + alert.type">
-    <p class="AlertBox-message">{{ alert.message }}</p>
+  <div class="GlobalAlert" :class="'GlobalAlert--' + alert.type">
+    <p>{{ alert.message }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AlertBox',
+  name: 'GlobalAlert',
   props: {
     alert: {
       type: Object,
@@ -22,13 +22,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .AlertBox {
-    background: #eee;
-    width: 100%;
-    max-width: 32em;
+  .GlobalAlert {
+    background: $color-info;
+    color: #fff;
     text-align: center;
-    padding: 1em;
-    margin-bottom: 1rem;
+    padding: 0.5em;
 
     &--error {
       background: $color-error;

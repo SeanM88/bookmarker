@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState({
-      alerts: state => state.account.alerts
+      alerts: state => state.alerts.account
     })
   },
   data() {
@@ -82,7 +82,6 @@ export default {
   .Form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
   }

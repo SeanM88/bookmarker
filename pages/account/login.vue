@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState({
-      alerts: state => state.account.alerts
+      alerts: state => state.alerts.account
     })
   },
   data() {
@@ -71,7 +71,6 @@ export default {
   .Page--login {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     i.fa-user-circle {

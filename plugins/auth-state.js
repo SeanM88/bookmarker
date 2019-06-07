@@ -19,22 +19,21 @@ export default (context) => {
           uid: user.uid,
           displayName: user.displayName,
           email: user.email,
-          photoURL: user.photoURL
+          photoURL: user.photoURL,
+          isVerified: false
         };
 
         if (user.emailVerified || user.providerData === 'google.com') {
-
-          return resolve(store.commit('account/MU_SetActiveUser', activeUser));
-
+          activeUser.isVerified = true;
         } else {
-
-          let alert = {
+          const alert = {
             type: 'info',
-            message: `Please use the link in the email sent to ${user.email} to verify your account and then return to this page to sign in`
-          }
-          return resolve(store.commit('account/MU_AccountAlert', alert));
-
+            message: `Almost done! Use the link in the email sent to ${activeUser.email} to complete sign up!`
+          };
+          store.commit('alerts/MU_GlobalAlert', alert);
         }
+
+        return resolve(store.commit('account/MU_SetActiveUser', activeUser));
 
       }
 

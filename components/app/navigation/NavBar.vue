@@ -3,7 +3,7 @@
 
     <nuxt-link to="/" class="Logo">Bookmarker</nuxt-link>
 
-    <template v-if="isVerified">
+    <template v-if="user">
       <button class="Button Button--text" type="button" @click.prevent="logOut">Sign out</button>
     </template>
     <template v-else>
@@ -21,7 +21,6 @@ export default {
   name: 'NavBar',
   computed: {
     ...mapState({
-      isVerified: state => state.account.isVerified,
       user: state => state.account.user
     })
   },
