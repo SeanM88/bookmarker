@@ -41,7 +41,8 @@ export const actions = {
   async verifyUser( { commit } ) {
     try {
       const user = await fireAuth.currentUser;
-      const response = await user.sendEmailVerification();
+      const response =await user.sendEmailVerification();
+      console.log('ACTION: verifyUser just ran');
     } catch (error) {
       let alert = {
         type: 'error',

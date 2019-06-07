@@ -37,7 +37,7 @@ export default {
   */
   plugins: [
     './plugins/firebase.js',
-    './plugins/auth.js'
+    './plugins/auth-state.js'
   ],
 
   /*
@@ -46,7 +46,7 @@ export default {
   */
   router: {
     middleware: [
-      'authroutes'
+      'auth-routes'
     ]
   },
 
