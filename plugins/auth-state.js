@@ -11,7 +11,6 @@ export default (context) => {
 
       console.log('--- Firebase just checked current Auth State! ---');
 
-      // TODO: We need to only sign in emailVerified users and/or Gmail/Facebook
       if (user) {
 
         console.log('YES, User is in onAuthStateChanged!');
