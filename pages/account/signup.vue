@@ -30,7 +30,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import AlertBox from '@/components/utils/AlertBox.vue';
+import AlertBox from '@/components/app/utils/AlertBox.vue';
 
 export default {
   layout: 'landing',

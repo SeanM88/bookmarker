@@ -82,3 +82,6 @@ dist
 
 # Service worker
 sw.*
+
+# System generated files
+.DS_Store

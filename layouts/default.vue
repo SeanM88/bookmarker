@@ -1,9 +1,7 @@
 <template lang="html">
-  <div class="Site">
-    <div class="Site-header">
-      <NavBar />
-    </div>
-    <div class="Site-body">
+  <div class="App">
+    <AppHeader />
+    <div class="App-body">
       <SideBar />
       <nuxt class="Page"/>
     </div>
@@ -11,19 +9,19 @@
 </template>
 
 <script>
-import NavBar from '../components/navigation/NavBar';
-import SideBar from '../components/navigation/SideBar';
+import AppHeader from '@/components/app/AppHeader.vue';
+import SideBar from '@/components/app/navigation/SideBar.vue';
 
 export default {
   components: {
-    NavBar,
+    AppHeader,
     SideBar
   }
 }
 </script>
 
 <style lang="scss">
-  .Site {
+  .App {
     display: flex;
     flex-direction: column;
     height: 100vh;

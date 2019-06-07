@@ -1,26 +1,24 @@
 <template lang="html">
-  <div class="Site">
-    <div class="Site-header">
-      <NavBar />
-    </div>
-    <div class="Site-body">
+  <div class="App">
+    <AppHeader />
+    <div class="App-body">
       <nuxt class="Page"/>
     </div>
   </div>
 </template>
 
 <script>
-import NavBar from '../components/navigation/NavBar';
+import AppHeader from '@/components/app/AppHeader.vue';
 
 export default {
   components: {
-    NavBar
+    AppHeader
   }
 }
 </script>
 
 <style lang="scss">
-  .Site {
+  .App {
     display: flex;
     flex-direction: column;
     height: 100vh;
