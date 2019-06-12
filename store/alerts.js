@@ -6,6 +6,11 @@ export const state = () => ({
 
 // MUTATIONS
 export const mutations = {
-  MU_AccountAlert: (state, alert) => state.account = [alert],
-  MU_GlobalAlert: (state, alert) => state.global = [alert]
+
+  MU_GlobalAlert: (state, alert) => state.global = [alert],
+
+  MU_ClearGlobalAlerts: (state) => state.global = [],
+
+  MU_AccountAlert: (state, alert) => state.account = [alert]
+
 };

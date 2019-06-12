@@ -25,10 +25,12 @@ export default (context) => {
 
         if (user.emailVerified || user.providerData === 'google.com') {
           activeUser.isVerified = true;
+          store.commit('alerts/MU_ClearGlobalAlerts');
         } else {
           const alert = {
             type: 'info',
-            message: `Almost done! Use the link in the email sent to ${activeUser.email} to complete sign up!`
+            message: `Almost done! Use the link in the email sent to ${activeUser.email} to complete sign up!`,
+            code: 'auth-verifyPending'
           };
           store.commit('alerts/MU_GlobalAlert', alert);
         }

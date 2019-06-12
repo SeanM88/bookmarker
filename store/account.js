@@ -21,11 +21,10 @@ export const actions = {
       // this.$router.push('/account/login');
 
     } catch (error) {
-      let alert = {
+      const alert = {
         type: 'error',
         message: error.message
       }
-      // commit('MU_AccountAlert', alert);
       commit('alerts/MU_AccountAlert', alert, {root: true});
     }
     // Currently state is updated in plugins/auth.js
@@ -34,13 +33,19 @@ export const actions = {
   async verifyUser( { commit } ) {
     try {
       const user = await fireAuth.currentUser;
-      const response = await user.sendEmailVerification();
+      // https://firebase.google.com/docs/auth/web/passing-state-in-email-actions#passing_statecontinue_url_in_email_actions
+      const actionCodeSettings = {
+        url: 'http://localhost:3000',
+        handleCodeInApp: false
+      };
+      const response = await user.sendEmailVerification(actionCodeSettings);
       console.log('ACTION: verifyUser just ran');
     } catch (error) {
-      let alert = {
+      const alert = {
         type: 'error',
-        message: error.message
+        message: `${error.code} - ${error.message}`
       }
+      commit('alerts/MU_AccountAlert', alert, {root: true});
     }
   },
 
@@ -53,7 +58,7 @@ export const actions = {
         this.$router.push('/');
     } catch ( error ) {
       console.log(`Error: ${error.code} - ${error.message}`);
-      let alert = {
+      const alert = {
         type: 'error',
         message: error.message
       }
@@ -69,7 +74,7 @@ export const actions = {
       // this.$router.push('/');
     } catch ( error ) {
       console.log(`Error: ${error.code} - ${error.message}`);
-      let alert = {
+      const alert = {
         type: 'error',
         message: error.message
       }
